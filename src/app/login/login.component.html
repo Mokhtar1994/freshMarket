@@ -1,0 +1,26 @@
+<div class="container">
+    <h3 class="my-4 fw-bolder">Log In:</h3>
+    <div>
+        <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+            <!--email input field-->
+            <label for="email" class="form-label fw-bold mt-1">Email:</label>
+            <input type="email" class="form-control  w-100" id="email" formControlName="email" />
+
+
+            <!--password input field-->
+            <label for="password" class="form-label fw-bold mt-2">Password:</label>
+            <input type="password" class="form-control  w-100" id="password" formControlName="password" />
+
+            <div class="d-flex mt-4">
+                <a routerLink="ForgetPassword" class="align-self-center fw-bolder">Forget your password ?</a>
+                <button type="submit" class="btn btn-primary ms-auto align-self-center ">
+                    <span *ngIf="!isLoading"> Login Now</span>
+                    <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+                </button>
+            </div>    
+            
+        </form>
+    </div>
+</div>
+
+
