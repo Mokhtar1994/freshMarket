@@ -22,6 +22,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CategorySliderComponent } from './category-slider/category-slider.component';
 import { MainSliderComponent } from './main-slider/main-slider.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -51,7 +52,9 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    CarouselModule 
+    CarouselModule,
+    NoopAnimationsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
