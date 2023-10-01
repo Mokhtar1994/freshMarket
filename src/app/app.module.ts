@@ -23,6 +23,7 @@ import { CategorySliderComponent } from './category-slider/category-slider.compo
 import { MainSliderComponent } from './main-slider/main-slider.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
     CategorySliderComponent,
     MainSliderComponent,
     ProductDetailsComponent,
+    CartComponent,
 
   ],
   imports: [

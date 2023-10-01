@@ -11,6 +11,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {path:"Home",component:HomeComponent,title:"Home"},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path:"SignIn/verifyCode",component:VerifyCodeComponent,title:"VerifyCode"},
   {path:"SignIn/resetPassword",component:ResetPasswordComponent,title:"ResetPassword"},
   {path:"SignOut",component:RegisterComponent,title:"SignOut"},
-  {path:"ProductDetails/:id",component:ProductDetailsComponent,title:"productDetails"}
+  {path:"ProductDetails/:id",component:ProductDetailsComponent,title:"productDetails"},
+  {path:"Cart",component:CartComponent,title:"Cart"}
   
 ];
 
