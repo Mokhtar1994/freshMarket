@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../interfaces/product';
 import { CartService } from '../services/cart.service';
+import { WishListService } from '../services/wish-list.service';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,7 @@ export class ProductsComponent {
   allProducts:Product[] = []
   searchKey:string = ''
 
-  constructor(private _productService:ProductService , private _cartService:CartService){
+  constructor(private _productService:ProductService , private _cartService:CartService , private _wishList:WishListService){
     this.getAllProducts()
   }
 
@@ -36,6 +37,18 @@ export class ProductsComponent {
       }
     })
   
+  }
+
+  addProductToWishList(id:string){
+
+    this._wishList.addProduct(id).subscribe({
+      next:(res)=>{
+        console.log(res)
+      }
+
+    })
+
+
   }
 
 

@@ -12,20 +12,22 @@ import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
-  {path:"Home",component:HomeComponent,title:"Home"},
-  {path:"wishList",component:WishListComponent,title:"wishList"},
-  {path:"Products",component:ProductsComponent,title:"Products"},
-  {path:"Categories",component:CategoriesComponent,title:"Categories"},
-  {path:"Brands",component:BrandsComponent,title:"Brands"},
+  {path:"" , redirectTo:"Home",pathMatch:"full"},
+  {path:"Home",canActivate:[authGuard],component:HomeComponent,title:"Home"},
+  {path:"wishList",canActivate:[authGuard],component:WishListComponent,title:"wishList"},
+  {path:"Products",canActivate:[authGuard],component:ProductsComponent,title:"Products"},
+  {path:"Categories",canActivate:[authGuard],component:CategoriesComponent,title:"Categories"},
+  {path:"Brands",canActivate:[authGuard],component:BrandsComponent,title:"Brands"},
   {path:"SignIn",component:LoginComponent,title:"SignIn"},
   {path:"SignIn/ForgetPassword",component:ForgetPasswordComponent,title:"ForgetPassword"},
   {path:"SignIn/verifyCode",component:VerifyCodeComponent,title:"VerifyCode"},
   {path:"SignIn/resetPassword",component:ResetPasswordComponent,title:"ResetPassword"},
-  {path:"SignOut",component:RegisterComponent,title:"SignOut"},
-  {path:"ProductDetails/:id",component:ProductDetailsComponent,title:"productDetails"},
-  {path:"Cart",component:CartComponent,title:"Cart"}
+  {path:"SignOut",redirectTo:"SignIn",pathMatch:"full"},
+  {path:"ProductDetails/:id",canActivate:[authGuard],component:ProductDetailsComponent,title:"productDetails"},
+  {path:"Cart",canActivate:[authGuard],component:CartComponent,title:"Cart"}
   
 ];
 

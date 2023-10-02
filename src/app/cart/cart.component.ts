@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
         this.cartItems = res
         console.log(res)
         console.log(this.cartItems)
+
       },
       error:(error)=>{
           console.log(error.error.message)
@@ -40,6 +41,7 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         this.cartItems = res
         console.log(res)
+
       }
     })
   }
@@ -50,7 +52,6 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         this.cartItems = res
         console.log(res)
-
       }
     })
   }
