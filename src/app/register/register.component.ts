@@ -22,7 +22,7 @@ export class RegisterComponent {
     email : new FormControl("",[Validators.required,Validators.email]),
     password : new FormControl("",[Validators.required , Validators.pattern(/^[A-Za-z].{6,8}/gi)]),
     rePassword : new FormControl("",[Validators.required]),
-    phone : new FormControl("",[Validators.required , Validators.pattern(/^(01)([0-9]{9})/)])
+    phone : new FormControl("",[Validators.required , Validators.pattern(/^01[1250][0-9]{8}$/)])
   },{
     validators:this.repasswordValidator
   })

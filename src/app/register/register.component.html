@@ -63,7 +63,7 @@
                 </p>
             </div>
 
-            <button *ngIf="!isLoading"  type="submit" class="btn btn-primary d-block ms-auto  my-4 ">Register Now</button>
+            <button [disabled]="!signOutForm.valid"  *ngIf="!isLoading"  type="submit" class="btn btn-primary d-block ms-auto  my-4 ">Register Now</button>
             <button *ngIf="isLoading"  type="submit" class="btn btn-primary d-block ms-auto  my-4 ">
                 <i class="fa-solid fa-spinner fa-spin"></i>
             </button>

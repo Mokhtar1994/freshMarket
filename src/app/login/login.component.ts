@@ -16,8 +16,8 @@ export class LoginComponent {
   constructor(private _authService:AuthService , private _router:Router){}
 
   signInForm:FormGroup = new FormGroup({
-    email : new FormControl(""),
-    password : new FormControl(""),
+    email : new FormControl("",[Validators.required,Validators.email]),
+    password : new FormControl("",[Validators.required]),
   
   })
 
