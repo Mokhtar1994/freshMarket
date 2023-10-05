@@ -1,7 +1,7 @@
 <div class="container my-5">
-    <div class="d-flex justify-content-between my-5 px-2  ">
+    <div class="d-flex justify-content-between my-5 px-2" *ngIf="cartItems.data">
         <h3>Cart Shop</h3>
-        <button *ngIf="!isEmpty" class="btn btn-primary ">check out</button>
+        <button *ngIf="!isEmpty" class="btn btn-primary" [routerLink]="['/Checkout',cartItems.data._id]"  >check out</button>
     </div>
     <h2  class="text-center mb-5" *ngIf="isEmpty">your cart is empty</h2>
     <div class="d-flex justify-content-between my-5 px-2 " *ngIf="cartItems.data" >
@@ -29,3 +29,4 @@
     </div>
     <button *ngIf="!isEmpty" class="btn rounded-2 border-success  d-block  m-auto " (click)="clearCart()">Clear Cart</button>
 </div>
+<p-toast></p-toast>

@@ -11,6 +11,7 @@ import { Route, Router } from '@angular/router';
 export class LoginComponent {
 
   isLoading:boolean = false 
+  error:string = ""
 
   constructor(private _authService:AuthService , private _router:Router){}
 
@@ -22,24 +23,29 @@ export class LoginComponent {
 
 
   signIn(){
-    this.isLoading = true 
-    this._authService.signIn(this.signInForm.value).subscribe({
-      next:(res)=>{
-        console.log(res)
-        this.isLoading = false 
-        localStorage.setItem("EcommerceUserToken",res.token);
-        this._authService.getUserData();
-        this._router.navigate(['/Home'])
-      },
-      error:(err)=>{
-        this.isLoading = false 
-        console.log(err.error)
-      },
-      complete:()=>{
-        this.isLoading = false 
-      }
-    })
 
+    if(this.signInForm.valid){
+
+      this.isLoading = true 
+      this._authService.signIn(this.signInForm.value).subscribe({
+        next:(res)=>{
+          console.log(res)
+          this.isLoading = false 
+          localStorage.setItem("EcommerceUserToken",res.token);
+          this._authService.getUserData();
+          this._router.navigate(['/Home'])
+        },
+        error:(err)=>{
+          this.isLoading = false 
+          this.error = err.error.message
+          console.log(err.error)
+        },
+        complete:()=>{
+          this.isLoading = false 
+        }
+      })
+
+    }    
 
   }
 

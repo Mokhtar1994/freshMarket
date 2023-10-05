@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
 
   isLoading:boolean = false 
+  error:string = ""
 
   constructor(private _authService:AuthService, private _router:Router){}
 
@@ -22,24 +23,49 @@ export class RegisterComponent {
     password : new FormControl("",[Validators.required , Validators.pattern(/^[A-Za-z].{6,8}/gi)]),
     rePassword : new FormControl("",[Validators.required]),
     phone : new FormControl("",[Validators.required , Validators.pattern(/^(01)([0-9]{9})/)])
+  },{
+    validators:this.repasswordValidator
   })
 
 
   submit(){
-    this.isLoading = true ;
-    this._authService.register(this.signOutForm.value).subscribe({
-      next:(res:any)=>{
-        // console.log(this.signOutForm);
-        console.log(res);
-        this._router.navigate(["/SignIn"])
-        this.isLoading = false ;
-      },
-      error:(e)=>{
-        console.log(e.error)
-        this.isLoading = false ;
-      }
-    })
+  
+    if(this.signOutForm.valid){
+      this.isLoading = true ;
+      this._authService.register(this.signOutForm.value).subscribe({
+        next:(res:any)=>{
+          // console.log(this.signOutForm);
+          console.log(res);
+          this._router.navigate(["/SignIn"])
+          this.isLoading = false ;
+        },
+        error:(e)=>{
+          console.log(e.error)
+          this.isLoading = false ;
+          this.error = e.error.message
+          
+        }
+      })
   }
+}
+
+repasswordValidator(registerForm:any){
+
+  let passwordValue = registerForm.get("password")
+  let rePasswordValue = registerForm.get("rePassword")
+
+  if(passwordValue?.value === rePasswordValue?.value){
+
+    return null
+
+  }else{
+
+    rePasswordValue?.setErrors({repasswordMatch:"password and repassword must be matched"})
+    return {repasswordMatch:"password and repassword must be matched"}
+  }
+
+
+}
 
 
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,19 @@ export class CartService {
 
   baseUrl:string = "https://ecommerce.routemisr.com"
 
+  numOfCartItems:BehaviorSubject<number> = new BehaviorSubject(0);
+
   header:any ={
     token:localStorage.getItem("EcommerceUserToken")
   } 
 
-  constructor(private _httpClient:HttpClient){}
+  constructor(private _httpClient:HttpClient){
+    this.getUserCart().subscribe({
+      next:(res)=>{
+        this.numOfCartItems.next(res.numOfCartItems)
+      }
+    })
+  }
 
 
   addProductToCart(id:string):Observable<any>{

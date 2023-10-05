@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { WishListService } from '../services/wish-list.service';
 import { Product } from '../interfaces/product';
 import { CartService } from '../services/cart.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
-  styleUrls: ['./wish-list.component.css']
+  styleUrls: ['./wish-list.component.css'],
 })
 export class WishListComponent {
 

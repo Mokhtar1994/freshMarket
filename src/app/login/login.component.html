@@ -1,6 +1,10 @@
+
 <div class="container">
     <h3 class="my-4 fw-bolder">Log In:</h3>
     <div>
+        <div class="alert alert-danger mb-3 w-100 " *ngIf="error">
+            <p>{{error}}</p>
+        </div>
         <form [formGroup]="signInForm" (ngSubmit)="signIn()">
             <!--email input field-->
             <label for="email" class="form-label fw-bold mt-1">Email:</label>
@@ -13,9 +17,9 @@
 
             <div class="d-flex mt-4">
                 <a routerLink="ForgetPassword" class="align-self-center fw-bolder">Forget your password ?</a>
-                <button type="submit" class="btn btn-primary ms-auto align-self-center ">
-                    <span *ngIf="!isLoading"> Login Now</span>
-                    <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+                <button type="submit" *ngIf="!isLoading" class="btn btn-primary ms-auto align-self-center" [disabled]="!signInForm.valid">signIn</button>
+                <button type="submit" *ngIf="isLoading" class="btn btn-primary ms-auto align-self-center">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
                 </button>
             </div>    
             

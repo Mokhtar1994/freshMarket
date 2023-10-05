@@ -1,8 +1,13 @@
+
 <div class="container">
 
     <h3 class="my-5 fw-bolder">Register Now:</h3>
 
     <div>
+        <div class="alert alert-danger mb-3 w-100 " *ngIf="error">
+            <p>{{error}}</p>
+        </div>
+        
         <form [formGroup]="signOutForm" (ngSubmit)="submit()">
 
             <!--name input field-->
@@ -40,6 +45,9 @@
             <div class=" alert alert-danger mt-3" *ngIf="signOutForm.get('rePassword')?.errors && (signOutForm.get('rePassword')?.touched) ">
                 <p *ngIf="signOutForm.get('rePassword')?.getError('required')">
                     repassword required
+                </p>
+                <p *ngIf="signOutForm.get('rePassword')?.getError('repasswordMatch')">
+                    password and repassword must be matched
                 </p>
             </div>
 

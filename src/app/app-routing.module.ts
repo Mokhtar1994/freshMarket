@@ -13,6 +13,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
 import { authGuard } from './auth.guard';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {path:"" , redirectTo:"Home",pathMatch:"full"},
@@ -25,9 +26,11 @@ const routes: Routes = [
   {path:"SignIn/ForgetPassword",component:ForgetPasswordComponent,title:"ForgetPassword"},
   {path:"SignIn/verifyCode",component:VerifyCodeComponent,title:"VerifyCode"},
   {path:"SignIn/resetPassword",component:ResetPasswordComponent,title:"ResetPassword"},
-  {path:"SignOut",redirectTo:"SignIn",pathMatch:"full"},
+  {path:"SignOut",component:RegisterComponent , title:"register"},
   {path:"ProductDetails/:id",canActivate:[authGuard],component:ProductDetailsComponent,title:"productDetails"},
-  {path:"Cart",canActivate:[authGuard],component:CartComponent,title:"Cart"}
+  {path:"Cart",canActivate:[authGuard],component:CartComponent,title:"Cart"},
+  {path:"Checkout/:cardId",canActivate:[authGuard],component:CheckoutComponent,title:"Checkout"},
+
   
 ];
 

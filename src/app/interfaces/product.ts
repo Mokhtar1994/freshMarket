@@ -4,12 +4,12 @@ export interface Product {
     imageCover:string
     _id:string
     description:string
-    category: category
+    category: Category
     ratingsAverage:number
     images:string[]
   
 }
- interface category{
-    name?:string
+ interface Category{
+    name:string
 
 }

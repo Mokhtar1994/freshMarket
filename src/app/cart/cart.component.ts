@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../interfaces/cart';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  providers:[MessageService]
 })
 export class CartComponent implements OnInit {
 
@@ -13,7 +15,7 @@ export class CartComponent implements OnInit {
   isEmpty:boolean = false 
 
 
-  constructor(private _cartService:CartService){}
+  constructor(private _cartService:CartService , private _messageService:MessageService){}
 
   ngOnInit(): void {
     this.getUserCart()
@@ -25,12 +27,10 @@ export class CartComponent implements OnInit {
         this.cartItems = res
         console.log(res)
         console.log(this.cartItems)
-
       },
       error:(error)=>{
           console.log(error.error.message)
           this.isEmpty = true
-
       }
     })
   }
@@ -40,6 +40,8 @@ export class CartComponent implements OnInit {
     this._cartService.deleteCardItem(id).subscribe({
       next:(res)=>{
         this.cartItems = res
+        this._cartService.numOfCartItems.next(res.numOfCartItems)
+        this._messageService.add({ severity: 'error', summary: 'Delete Product', detail: 'Product Deleted From Cart'});
         console.log(res)
 
       }
@@ -47,7 +49,6 @@ export class CartComponent implements OnInit {
   }
 
   updateProductQuantity(id:string , count:number){
-
     this._cartService.updateProductQuantity(id,count).subscribe({
       next:(res)=>{
         this.cartItems = res
@@ -61,6 +62,7 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res)
         this.cartItems = {} as Cart
+        this._cartService.numOfCartItems.next(0)
         this.isEmpty = true
       }
     })
